@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-
+use App\Http\Controllers\SiswaController;
 // Halaman utama redirect ke login
 Route::get('/', function () {
     return redirect('/login');
@@ -23,3 +23,8 @@ Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth')->n
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware('auth')->name('dashboard');
+
+// POST CRUD
+Route::middleware('auth')->group(function () {
+    Route::resource('siswa', SiswaController::class);
+});

@@ -1,17 +1,19 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Dashboard</title>
-</head>
-<body>
+@extends('layouts.app')
 
-<h2>Dashboard</h2>
-<p>Selamat datang, {{ Auth::user()->name }}</p>
+@section('title', 'Dashboard')
 
-<form method="POST" action="/logout">
+@section('content')
+<h1>Dashboard</h1>
+<p>Selamat datang, {{ auth()->user()->name }}</p>
+
+<!-- Link ke halaman CRUD Siswa -->
+<a href="{{ route('siswa.index') }}">Kelola Data Siswa</a>
+
+<hr>
+
+<!-- Logout -->
+<form action="{{ route('logout') }}" method="POST" class="logout-form">
     @csrf
     <button type="submit">Logout</button>
 </form>
-
-</body>
-</html>
+@endsection
